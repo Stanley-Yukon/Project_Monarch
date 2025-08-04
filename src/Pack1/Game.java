@@ -119,8 +119,13 @@ public class Game extends Canvas implements Runnable{
 		stop();
 	}
 	
+	int x=0;
+	int y=0;
+	
 	public void update()
 	{
+		x++;
+		y++;
 		
 	}
 	
@@ -136,7 +141,7 @@ public class Game extends Canvas implements Runnable{
 		screen1.clear();
 		
 		//EP9 - Rendering Pixels
-		screen1.render();
+		screen1.render(x,y);
 		
 		for(int i=0;i<pixels.length;i++)
 		{
