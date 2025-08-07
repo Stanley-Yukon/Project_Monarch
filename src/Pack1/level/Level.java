@@ -63,12 +63,12 @@ public class Level {
 		
 		//EP34 -Setting Offset ( look at Screen )
 		
-		//EP31* - Corner Pins
+		//EP31* - Corner Pins //EP39 CAN'T MAKE CORNER PINS NEGATIVE ???
 		int x0 = (xScroll>>4);//Divide to get a pixel level not Tile level
-		int x1 = (xScroll+(screen.getWidth()))>>4;
-		
+		int x1 = (xScroll+(screen.getWidth()+16))>>4;
+		//								   	 ^ TILE SIZE !!!
 		int y0 = (yScroll>>4);
-		int y1 = (yScroll+(screen.getHeight()))>>4;
+		int y1 = (yScroll+(screen.getHeight()+16))>>4;
 		// EP31 - Corner Pins
 		
 		//EP32 - Deciding Which Tile to get ? --> SEE EP35

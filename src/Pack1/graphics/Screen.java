@@ -100,8 +100,14 @@ public class Screen
 			for( int x=0; x<tile.sprite.SIZE; x++)
 			{
 				int x_ABS = x + xp;//yp changes based on Offset
-				if(x_ABS < 0 || x_ABS >= width || y_ABS < 0 || y_ABS >= height)break;
-				// ^ BLACKOUT on 4 CONDITIONS ( All locations in 1 file )
+				if(x_ABS < -(tile.sprite.SIZE)|| x_ABS >= width || y_ABS < 0 || y_ABS >= height)break;
+				if(x_ABS < 0) {x_ABS= 0;}//LOL !
+				//1. ^ BLACKOUT on 4 CONDITIONS ( All locations in 1 file )
+				//2. used to be x_ABS < 0 but NOW, We fix left side ((shuttering))
+				//2. We shift by -(a WHOLE tile), not -just -(1)
+				//2. Literally Say "if x_ABS < 0, turn to zero, LMAO !!!
+				
+				
 				pixels[x_ABS+ (y_ABS*width) ] = tile.sprite.pixels[x + (y*tile.sprite.SIZE)];
 				// ^ Which screen pixels ? get ? Which Sprite pixels ???
 			}
