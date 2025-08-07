@@ -13,6 +13,9 @@ import javax.swing.JFrame;//requires java.desktop in module.info <-
 //
 
 import Pack1.graphics.Screen;
+import Pack1.input.Keyboard;
+import Pack1.level.Level;
+import Pack1.level.RandomLevel;
 
 public class Game extends Canvas implements Runnable{
 	//EP4???
@@ -42,6 +45,8 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	private Screen screen1;
+	private Keyboard key1;
+	private Level level;//Have one level loaded at one point in time
 	
 	public Game()//Ep4- Constructor// Functions inside constructor get EXECUTED before object creation
 	{//Dimension class from java.awt
@@ -52,6 +57,10 @@ public class Game extends Canvas implements Runnable{
 		screen1 = new Screen(screenheight, screenwidth);
 		frame = new JFrame();//runs when Game() constructor is called
 		//Frame has Dimension
+		key1 = new Keyboard();
+		addKeyListener(key1);// EP.17 - allows key interaction lmao
+		
+		level = new RandomLevel(64,64);//64 TILES by 64 TILES !!!
 	}
 	
 	//synchronized means -> preventing
@@ -92,6 +101,7 @@ public class Game extends Canvas implements Runnable{
 		int numUpdates = 0;//How Many Updates per SECOND ?
 		long OneSecTimer = System.currentTimeMillis();
 		
+		requestFocus(); //EP-23 From Component Class, Makes Auto Interact
 		while(running == true)//Keep game running while threads are joined
 		{
 			double now = System.nanoTime(); // 2. After getting to while LOOP
@@ -118,10 +128,21 @@ public class Game extends Canvas implements Runnable{
 		}
 		stop();
 	}
+	int y =0;
+	int x =0;
 	
 	public void update()
 	{
-		
+		//1. SEE FROM COLOURS HOW THE "AUTO" SCROLL WORKS
+		//x++;
+		//y++;
+		//2. -> CHANGE LOGIC, Scroll should happen IF-> key event
+		// INPUT(S) HANDLD BY NEW CLASS !!!
+		key1.update();// - Actual running with addKeyListener(key1)
+		if(key1.up)y--;
+		if(key1.down)y++;
+		if(key1.left)x--;
+		if(key1.right)x++;
 	}
 	
 	//EP5
@@ -136,7 +157,8 @@ public class Game extends Canvas implements Runnable{
 		screen1.clear();
 		
 		//EP9 - Rendering Pixels
-		screen1.render();
+		//screen1.render(x,y); - This died in EP36 with renderTile();
+		level.render(x,y,screen1);
 		
 		for(int i=0;i<pixels.length;i++)
 		{
@@ -151,7 +173,6 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());//Top left is 0,0
 		g.drawImage(view, 0, 0, getWidth(), getHeight(),null);
-		
 		
 		//TO HERE 
 		/////////////
