@@ -44,6 +44,12 @@ public class Sprite {
 	public static Sprite stones = new Sprite(16,3,0,SpriteSheet.tiles1);
 	public static Sprite lightGrass = new Sprite(16,4,0,SpriteSheet.tiles1);
 	
+	public static Sprite player0 = new Sprite(16,0,10,SpriteSheet.tiles1);
+	public static Sprite player1 = new Sprite(16,1,10,SpriteSheet.tiles1);
+	public static Sprite player2 = new Sprite(16,0,11,SpriteSheet.tiles1);
+	public static Sprite player3 = new Sprite(16,1,11,SpriteSheet.tiles1);
+	
+	
 	private void load()
 	{
 		for(int y = 0; y< SIZE; y++)

@@ -4,6 +4,7 @@ package Pack1;
 import java.awt.Canvas;// see line5 below - YOU MUST be EXPLICIT about dependencies
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -12,6 +13,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;//requires java.desktop in module.info <-
 //
 
+import Pack1.entity.mob.Player;
 import Pack1.graphics.Screen;
 import Pack1.input.Keyboard;
 import Pack1.level.Level;
@@ -47,6 +49,8 @@ public class Game extends Canvas implements Runnable{
 	private Screen screen1;
 	private Keyboard key1;
 	private Level level;//Have one level loaded at one point in time
+	private Player player;
+	
 	
 	public Game()//Ep4- Constructor// Functions inside constructor get EXECUTED before object creation
 	{//Dimension class from java.awt
@@ -61,6 +65,7 @@ public class Game extends Canvas implements Runnable{
 		addKeyListener(key1);// EP.17 - allows key interaction lmao
 		
 		level = new RandomLevel(64,64);//64 TILES by 64 TILES !!!
+		player = new Player(key1);// PLAYER INHERITING INPUT ABILITY
 	}
 	
 	//synchronized means -> preventing
@@ -128,8 +133,10 @@ public class Game extends Canvas implements Runnable{
 		}
 		stop();
 	}
-	int y =0;
-	int x =0;
+	
+	// GLOBAL MOVEMENT !!! -> ( GIVEN TO PLAYER INSTEAD !!! )
+	//int y =0; SEE LINE 134 -> 147
+	//int x =0; SEE LINE 135 -> 147
 	
 	public void update()
 	{
@@ -139,10 +146,12 @@ public class Game extends Canvas implements Runnable{
 		//2. -> CHANGE LOGIC, Scroll should happen IF-> key event
 		// INPUT(S) HANDLD BY NEW CLASS !!!
 		key1.update();// - Actual running with addKeyListener(key1)
-		if(key1.up)y--;
-		if(key1.down)y++;
-		if(key1.left)x--;
-		if(key1.right)x++;
+		
+		//.. TECHNICALLY, just manipulating values in Level.render
+		// Fails ^ at MULTIPLAYER !!! - EP43 ( DELETE ) - ! ERROR AT level.render();
+		
+		//3.NEW METHOD
+		player.update();
 	}
 	
 	//EP5
@@ -156,9 +165,16 @@ public class Game extends Canvas implements Runnable{
 		//EP10 - CLear Screen
 		screen1.clear();
 		
+		//EP45 
+		int xScroll = (player.x)-(screen1.width/2); //places in middle 
+		int yScroll = (player.y)-(screen1.height/2);
+		
+		//EP45 ^^^
+		
 		//EP9 - Rendering Pixels
 		//screen1.render(x,y); - This died in EP36 with renderTile();
-		level.render(x,y,screen1);
+		level.render(xScroll,yScroll,screen1);
+		player.render(screen1);
 		
 		for(int i=0;i<pixels.length;i++)
 		{
@@ -173,7 +189,14 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());//Top left is 0,0
 		g.drawImage(view, 0, 0, getWidth(), getHeight(),null);
+		//ACTUAL DRAWING STAGE of the BuferedImage manipulated by pixels[]
 		
+		//FOR FONT THINGS
+		g.setColor(Color.BLACK);
+		g.setFont(new Font ("Verdana",0,50));
+		//g.drawString("X: "+player.x+", Y: "+player.y, 350,300);
+		//FOR FONT THINGS
+	
 		//TO HERE 
 		/////////////
 		
