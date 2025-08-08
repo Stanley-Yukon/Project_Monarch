@@ -38,16 +38,37 @@ public class Sprite {
 		}		
 	}
 	
-	public static Sprite v0id = new Sprite(16,0);//New Static Instance with unique variables
+	public static Sprite v0id = new Sprite(16,0,0,SpriteSheet.tiles1);//New Static Instance with unique variables
 	public static Sprite grass = new Sprite(16,1,0,SpriteSheet.tiles1);
 	public static Sprite flower = new Sprite(16,2,0,SpriteSheet.tiles1);
 	public static Sprite stones = new Sprite(16,3,0,SpriteSheet.tiles1);
 	public static Sprite lightGrass = new Sprite(16,4,0,SpriteSheet.tiles1);
 	
+	/*small sprites ( not used )
 	public static Sprite player0 = new Sprite(16,0,10,SpriteSheet.tiles1);
 	public static Sprite player1 = new Sprite(16,1,10,SpriteSheet.tiles1);
 	public static Sprite player2 = new Sprite(16,0,11,SpriteSheet.tiles1);
 	public static Sprite player3 = new Sprite(16,1,11,SpriteSheet.tiles1);
+	small sprites ( not used )*/
+	
+	//Bigger Sprite -> Math is DIFFERENT !!!  10 -> 5
+	public static Sprite player = new Sprite(32,2,5,SpriteSheet.tiles1);
+	public static Sprite playerR = new Sprite(32,1,5,SpriteSheet.tiles1);
+	public static Sprite playerB = new Sprite(32,0,5,SpriteSheet.tiles1);
+	public static Sprite playerL = new Sprite(32,3,5,SpriteSheet.tiles1);	
+	
+	// PLAYER WALKING SPRITES....Implemented in Player with (IMPT) COUNTER variable
+	public static Sprite player_f1 = new Sprite(32,2,6,SpriteSheet.tiles1);
+	public static Sprite player_f2 = new Sprite(32,2,7,SpriteSheet.tiles1);
+	
+	public static Sprite player_r1 = new Sprite(32,1,6,SpriteSheet.tiles1);
+	public static Sprite player_r2 = new Sprite(32,1,7,SpriteSheet.tiles1);
+	
+	public static Sprite player_b1 = new Sprite(32,0,6,SpriteSheet.tiles1);
+	public static Sprite player_b2 = new Sprite(32,0,7,SpriteSheet.tiles1);
+	
+	public static Sprite player_l1 = new Sprite(32,3,6,SpriteSheet.tiles1);
+	public static Sprite player_l2 = new Sprite(32,3,7,SpriteSheet.tiles1);
 	
 	
 	private void load()

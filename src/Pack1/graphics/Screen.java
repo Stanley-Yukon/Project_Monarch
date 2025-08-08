@@ -123,18 +123,18 @@ public class Screen
 		xp = xp-xOffset;// MINUS as when player->right . map ->left
 		yp = yp-yOffset;//same here ^
 			
-		for( int y=0; y<16; y++)//rolls from 0-15
+		for( int y=0; y<32; y++)//rolls from 0-15
 		{
 			int y_ABS = y + yp;//yp changes based on Offset
-			for( int x=0; x<16; x++)
+			for( int x=0; x<32; x++)
 			{
 				int x_ABS = x + xp;//yp changes based on Offset
-				if(x_ABS < -(16)|| x_ABS >= width || y_ABS < 0 || y_ABS >= height)break;
+				if(x_ABS < -(32)|| x_ABS >= width || y_ABS < 0 || y_ABS >= height)break;
 				if(x_ABS < 0) {x_ABS= 0;}//LOL !
 				
-				int col = sprite.pixels[x+ (y*16)];
+				int col = sprite.pixels[x+ (y*32)];
 				
-				if(col != 0xffff00ff)// && col != 0xff000000) // GET RID OF PINK !!! (ff00ff)
+				if(col != 0xffff00ff && col != 0xffff00fe) // GET RID OF PINK !!! (ff00ff)
 				{//This will not work when using BufferedImage ? - Loads RGBA Also
 					pixels[x_ABS+ (y_ABS*width) ] = col;
 				}// COMPENSATE WITH +FF = 0x(ff)ff00ff

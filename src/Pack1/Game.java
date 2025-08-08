@@ -18,6 +18,7 @@ import Pack1.graphics.Screen;
 import Pack1.input.Keyboard;
 import Pack1.level.Level;
 import Pack1.level.RandomLevel;
+import Pack1.level.SpawnLevel;
 
 public class Game extends Canvas implements Runnable{
 	//EP4???
@@ -51,6 +52,7 @@ public class Game extends Canvas implements Runnable{
 	private Level level;//Have one level loaded at one point in time
 	private Player player;
 	
+	public final String path = "/textures/Spawn.png";
 	
 	public Game()//Ep4- Constructor// Functions inside constructor get EXECUTED before object creation
 	{//Dimension class from java.awt
@@ -64,7 +66,9 @@ public class Game extends Canvas implements Runnable{
 		key1 = new Keyboard();
 		addKeyListener(key1);// EP.17 - allows key interaction lmao
 		
-		level = new RandomLevel(64,64);//64 TILES by 64 TILES !!!
+		//level = new SpawnLevel(path);//64 TILES by 64 TILES !!!
+		level = new RandomLevel(64,64);
+		
 		player = new Player(key1);// PLAYER INHERITING INPUT ABILITY
 	}
 	

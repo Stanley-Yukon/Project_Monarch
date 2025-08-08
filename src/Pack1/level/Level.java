@@ -17,6 +17,7 @@ public class Level {
 	protected int height;//for RNG 
 	
 	protected int[] tiles;// Contains DATA on tile IDs
+	protected Tile[] tilesTRUE;
 	
 	//No default (no param constructor) - causes problems in sub-classes
 	
@@ -26,21 +27,23 @@ public class Level {
 		this.height = height;
 		tiles = new int[width*height];//this array contains ONE INT per tile on map ( specify tile type )
 		
-		//createRandomLevel(); NIGGER !!! NIGGER !!! NIGGER !!! NIGGER !!!
+		//createRandomLevel();
 	}
 	
 	public Level(String path)
 	{
-		loadLevel(path);
+		//loadLevel(path);
+		//generateLevel();
 	}
 	
+	private void generateLevel() {
+		// TODO Auto-generated method stub
+	}
+
 	private void createRandomLevel()// Type 1 constructor method
-	{
-		
-		
-	}
+	{}
 	
-	private void loadLevel(String path)// Read Width and Height data from FILE ???
+	protected void loadLevel(String path)// Read Width and Height data from FILE ???
 	{
 		
 	}
@@ -78,6 +81,18 @@ public class Level {
 			for( int x=x0; x<x1; x++)//while x is BETWEEN x0 <-> x1 PINSS
 			{
 				getTile(x,y).render(x, y, screen);//THIS is in "Tile" precision as >>4 in EP31*
+				
+				/*  FOR (( SPAWN LEVEL ))
+				if (x < 0 || y < 0 || x >= width || y >= height) {
+				    Tile.v0id.render(x, y, screen);
+				    continue;
+				}
+				
+				Tile t = tilesTRUE[x + (y * width)];
+				if (t != null) t.render(x, y, screen);
+				else Tile.v0id.render(x, y, screen);
+				*/
+				
 			}//VERY IMPORTANT !!! -> MAKE THESE BIGG AGAIN !
 		}//		YOU CAN DO THIS IN Tile.render();
 	}

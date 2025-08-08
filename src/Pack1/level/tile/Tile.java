@@ -23,12 +23,12 @@ public class Tile {
 	{
 		this.sprite = sprite;
 	}
-	//NEW GUYSSSS
 	
+	//NEW GUYSSSS - Check EP51 if you made mistakes
 	public static Tile v0id = new VoidTile(Sprite.v0id);
 	public static Tile grass = new GrassTile(Sprite.grass);
 	public static Tile flower = new GrassTile(Sprite.flower);
-	public static Tile stones = new GrassTile(Sprite.stones);
+	public static Tile stones = new RockTile(Sprite.stones);
 	public static Tile lightGrass = new GrassTile(Sprite.lightGrass);
 	
 	//SET Tile object to a new set of "Tile" Rules

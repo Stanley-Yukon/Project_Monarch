@@ -6,6 +6,7 @@ public abstract class Mob extends Entity{
 	
 	protected Sprite mobSprite;//cannot be used outside of mobs
 	protected int dir = 0;//0- north, 1-east etc. (dir = direction)
+	
 	protected boolean walking = false;//For animation
 	
 	public void move(int xC, int yC)//Controls how pixels fuck with the Screen
