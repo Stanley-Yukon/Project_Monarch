@@ -115,7 +115,6 @@ public class Player extends Mob {
 				else {playersprite = Sprite.player_l2;}
 			}
 		}
-		
 		screen.renderPlayer(xx, yy, playersprite);
 		//Two Animation ideas ( face direction & walking(itself) )
 	}

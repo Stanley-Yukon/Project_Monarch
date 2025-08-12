@@ -16,6 +16,7 @@ import javax.swing.JFrame;//requires java.desktop in module.info <-
 import Pack1.entity.mob.Player;
 import Pack1.graphics.Screen;
 import Pack1.input.Keyboard;
+import Pack1.input.Mouse;
 import Pack1.level.Level;
 import Pack1.level.RandomLevel;
 import Pack1.level.SpawnLevel;
@@ -49,7 +50,9 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	private Screen screen1;
-	private Keyboard key1;
+	private Keyboard key1;//-> Not really much sense as ONLY 1 KEYBOARD
+	//private Mouse mouse1 -> No NEED add here as ALL static methods
+	
 	private Level level;//Have one level loaded at one point in time
 	private Player player;
 	private TileCoord spawn;
@@ -66,7 +69,12 @@ public class Game extends Canvas implements Runnable{
 		frame = new JFrame();//runs when Game() constructor is called
 		//Frame has Dimension
 		key1 = new Keyboard();
+		Mouse mouse1 = new Mouse();//NOT MUCH SENSE AS ONLY 1 MOUSE LMAO
 		addKeyListener(key1);// EP.17 - allows key interaction lmao
+		
+		//VERY IMPT
+		addMouseListener(mouse1);// - M_Buttons LISTEN
+		addMouseMotionListener(mouse1);// - M_Location LISTEN
 		
 		//level = new SpawnLevel(path);//64 TILES by 64 TILES !!!
 		level = new SpawnLevel(path);
@@ -137,7 +145,6 @@ public class Game extends Canvas implements Runnable{
 				numUpdates = 0;
 				numFrames = 0;
 			}
-			
 		}
 		stop();
 	}
@@ -191,22 +198,26 @@ public class Game extends Canvas implements Runnable{
 		//EP9 - ! You must clear old pixels..How? ep10
 		
 		Graphics g = bs.getDrawGraphics();//Links ((g)) and buffer
-		//////////////
+		//////////////------------------------------------
 		//DISPLAY GRAPHICS HERE
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());//Top left is 0,0
 		g.drawImage(view, 0, 0, getWidth(), getHeight(),null);
-		//ACTUAL DRAWING STAGE of the BuferedImage manipulated by pixels[]
+		//	//ACTUAL DRAWING STAGE of the BuferedImage manipulated by pixels[]
 		
-		//FOR FONT THINGS
+		//		//FOR FONT THINGS
 		g.setColor(Color.BLACK);
 		g.setFont(new Font ("Verdana",0,50));
 		//g.drawString("X: "+player.x+", Y: "+player.y, 350,300);
-		//FOR FONT THINGS
+		//		//FOR FONT THINGS
 	
+		//g.fillRect(xScroll, yScroll, xScroll, yScroll)
+		//g.fillRect(Mouse.getX(), Mouse.getY(),64,64);
+		
+		//			^ mouse1 does not exist as it is NOT Global
 		//TO HERE 
-		/////////////
+		/////////////------------------------------------
 		g.dispose();
 		bs.show();
 		//^ important combo
