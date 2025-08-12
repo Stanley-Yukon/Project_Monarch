@@ -1,6 +1,12 @@
 package Pack1.entity.mob;
+import java.util.ArrayList;
+import java.util.List;
+
+import Pack1.Game;
 import Pack1.entity.Entity;
 import Pack1.graphics.Sprite;
+import Pack1.entity.projectile.Projectile;
+import Pack1.entity.projectile.BlueFire;
 
 public abstract class Mob extends Entity{
 	
@@ -9,6 +15,7 @@ public abstract class Mob extends Entity{
 	
 	protected boolean moving = false;
 	protected boolean walking = false;//For animation
+	protected List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	public void move(int xC, int yC)//Controls how pixels fuck with the Screen
 	{//x and y variables change...need take two param ( xChange, yChange )
@@ -36,8 +43,20 @@ public abstract class Mob extends Entity{
 		//if(!getCollision(0,yC)) {y = y+yC;}
 	}
 	
+	protected void shoot(int x, int y, double dir)
+	{
+		//dir = dir * (180/Math.PI);
+		//System.out.println("Angle is: "+dir);
+		Projectile p = new BlueFire(x,y,dir);
+		projectiles.add(p);
+		level.add(p);
+		//Need Array list to hold projectiles -> Done in Level
+	}
+	
 	public void update()
 	{}
+	
+	
 	/* OLD VERISON ( FAIL AT SLIDING AND SINGLE-BLOCK-SIDE-COLLIDE )
 	private boolean getCollision(int xC,int yC)//Collision DETECTION != Collision handling
 	{

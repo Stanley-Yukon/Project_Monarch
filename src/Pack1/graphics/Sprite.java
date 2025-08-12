@@ -59,6 +59,7 @@ public class Sprite {
 	public static Sprite victorianpaved = new Sprite(16,1,2,SpriteSheet.fancy1);
 	public static Sprite woodfloor = new Sprite(16,2,4,SpriteSheet.fancy1);
 	
+	public static Sprite bluefire = new Sprite(16,0,3,SpriteSheet.tiles1);
 	/*small sprites ( not used )
 	public static Sprite player0 = new Sprite(16,0,10,SpriteSheet.tiles1);
 	public static Sprite player1 = new Sprite(16,1,10,SpriteSheet.tiles1);

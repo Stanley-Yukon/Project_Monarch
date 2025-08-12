@@ -1,8 +1,10 @@
 package Pack1.entity.mob;
 
+import Pack1.Game;
 import Pack1.graphics.Screen;
 import Pack1.graphics.Sprite;
 import Pack1.input.Keyboard;
+import Pack1.input.Mouse;
 
 public class Player extends Mob {
 	
@@ -59,8 +61,31 @@ public class Player extends Mob {
 			walking = true;
 		}
 		else {walking=false;}//ALL ANIMATION is done in RENDER
+		
+		updateShoting();
 	}
 	
+
+	//SHOOTING EXPLANATION FOR METHOD BELOW ! BELOW ! BELOW !
+	// - SCREEN MIDDLE AT 0,0 (CENTERED)
+	// - OBJECT AR X,Y
+	
+	// 1.GET X-DIFF & Y-DIFF TO MAKE TRIANGLE ( we want -neg and +pos angles )
+	// 2.GET ANGLE ()TAN^-1(Opp / Adj) -> ArcTan -> atan2() ->(no zeros)
+	private void updateShoting()
+	{
+		if(Mouse.getButton()==1)
+		{//.1
+			double dx = ( Mouse.getX() - Game.screenwidth*Game.scale/2);
+			//							^ SCREEN WIDTH MID * scale
+			double dy = ( Mouse.getY() - Game.screenheight*Game.scale/2);
+			//							^ SCREEN HEIGHT MID * scale
+			//2.
+			double dir = Math.atan2(dy, dx);//In Radians
+			shoot(x,y,dir);
+		}
+	}
+
 	//All render methods require the SCREEn you will be
 	//rendering ONTO and the location ON the Screen (x,y)
 	public void render(Screen screen)

@@ -7,7 +7,8 @@ import Pack1.level.Level;
 
 public class Entity {
 	
-	public int x,y;
+	public int x;
+	public int y;
 	private boolean removed = false;
 	protected Level level;//set by init() at bottom.
 	protected final Random random = new Random();

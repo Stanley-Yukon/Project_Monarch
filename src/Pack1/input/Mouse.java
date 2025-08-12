@@ -18,16 +18,16 @@ public class Mouse implements MouseListener, MouseMotionListener
 
 	//АЛТ + SHIFT + S -> I for auto fill
 	public void mouseDragged(MouseEvent e)
-	{
-		
+	{//FOR DRAGGING PROJECTILE FUNCTIONALITY
+		mouseX = e.getX();
+		mouseY = e.getY();
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e)
-	{
+	{	
 		mouseX = e.getX();
-		mouseY = e.getY();
-		
+		mouseY = e.getY();	
 	}
 
 	@Override
@@ -53,4 +53,6 @@ public class Mouse implements MouseListener, MouseMotionListener
 	{
 		// TODO Auto-generated method stub
 	}
+	public static int getButton()
+	{return mouseB;}
 }

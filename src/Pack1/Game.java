@@ -167,6 +167,7 @@ public class Game extends Canvas implements Runnable{
 		
 		//3.NEW METHOD
 		player.update();
+		level.update();// This is for ENTITIES IN Level
 	}
 	
 	//EP5

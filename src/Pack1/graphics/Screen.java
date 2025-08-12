@@ -3,6 +3,7 @@ package Pack1.graphics;
 import java.util.Random;
 
 import Pack1.entity.mob.Player;
+import Pack1.entity.projectile.Projectile;
 import Pack1.level.tile.Tile;
 
 //The Screen Class is meant to be used to manipulate FRAME ?
@@ -147,5 +148,34 @@ public class Screen
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
 	}
+	
+	public void renderProjectile(int xp, int yp, Projectile p)
+	{//Won't have to update in Tile's render method if we change its sprite
+		xp = xp-xOffset;// MINUS as when player->right . map ->left
+		yp = yp-yOffset;//same here ^
+			
+		for( int y=0; y<p.getSprite().SIZE; y++)//rolls from 0-15
+		{
+			int y_ABS = y + yp;//yp changes based on Offset
+			for( int x=0; x<p.getSprite().SIZE; x++)
+			{
+				int x_ABS = x + xp;//yp changes based on Offset
+				if(x_ABS < -(p.getSprite().SIZE)|| x_ABS >= width || y_ABS < 0 || y_ABS >= height)break;
+				if(x_ABS < 0) {x_ABS= 0;}//LOL !
+				//1. ^ BLACKOUT on 4 CONDITIONS ( All locations in 1 file )
+				//2. used to be x_ABS < 0 but NOW, We fix left side ((shuttering))
+				//2. We shift by -(a WHOLE tile), not -just -(1)
+				//2. Literally Say "if x_ABS < 0, turn to zero, LMAO !!!
+				int col = p.getSprite().pixels[x+ (y*p.getSprite().SIZE)];
+				
+				if(col != 0xffff00ff && col != 0xffff00fe) // GET RID OF PINK !!! (ff00ff)
+				{//This will not work when using BufferedImage ? - Loads RGBA Also
+					pixels[x_ABS+ (y_ABS*width) ] = col;
+				}// COMPENSATE WITH +FF = 0x(ff)ff00ff
+				
+			}
+		}
+	}
+
 
 }
