@@ -20,7 +20,7 @@ public abstract class Mob extends Entity{
 		if (yC > 0) { dir = 2;}//south
 		if (yC < 0) { dir = 0;}//north
 		
-		if(!getCollision())//Can only move if NO Collisions
+		if(!getCollision(xC,yC))//Can only move if NO Collisions
 		{
 			x = x + xC;
 			y = y + yC;
@@ -33,9 +33,20 @@ public abstract class Mob extends Entity{
 		
 	}
 	
-	private boolean getCollision()
+	private boolean getCollision(int xC,int yC)//Collision DETECTION != Collision handling
 	{
+		//Algorithm for collision DETECTION -> Look ahead !!!
+		//we need future co-ordinates xC, yC to check in front
+		boolean solid = false;
+		if(level.getTile((x+xC)>>4, (y+yC)>>4).solid() == true){
+			//     ^ Returns Tile OBJ with Characteristics
+			//   ^ get tile looks at TILES not pixels !!!
+			solid = true;
+			return true;
+			//level is FROM ENTITY (Class) and MUST BE INITIALIZED
+		}
 		return false;
+		
 	}
 	
 	//lighting ??? angles ???

@@ -19,6 +19,7 @@ import Pack1.input.Keyboard;
 import Pack1.level.Level;
 import Pack1.level.RandomLevel;
 import Pack1.level.SpawnLevel;
+import Pack1.level.TileCoord;
 
 public class Game extends Canvas implements Runnable{
 	//EP4???
@@ -51,8 +52,9 @@ public class Game extends Canvas implements Runnable{
 	private Keyboard key1;
 	private Level level;//Have one level loaded at one point in time
 	private Player player;
+	private TileCoord spawn;
 	
-	public final String path = "/textures/Spawn.png";
+	public final String path = "/textures/Longhouse.png";
 	
 	public Game()//Ep4- Constructor// Functions inside constructor get EXECUTED before object creation
 	{//Dimension class from java.awt
@@ -67,9 +69,11 @@ public class Game extends Canvas implements Runnable{
 		addKeyListener(key1);// EP.17 - allows key interaction lmao
 		
 		//level = new SpawnLevel(path);//64 TILES by 64 TILES !!!
-		level = new RandomLevel(64,64);
+		level = new SpawnLevel(path);
+		spawn = new TileCoord(50,50);
 		
-		player = new Player(key1);// PLAYER INHERITING INPUT ABILITY
+		player = new Player(spawn.x(),spawn.y(),key1);// PLAYER INHERITING INPUT ABILITY
+		player.init(level);//set level in Entity ( Class )
 	}
 	
 	//synchronized means -> preventing
@@ -203,7 +207,6 @@ public class Game extends Canvas implements Runnable{
 	
 		//TO HERE 
 		/////////////
-		
 		g.dispose();
 		bs.show();
 		//^ important combo

@@ -24,12 +24,23 @@ public class Tile {
 		this.sprite = sprite;
 	}
 	
-	//NEW GUYSSSS - Check EP51 if you made mistakes
+	//NATURAL WORLD
 	public static Tile v0id = new VoidTile(Sprite.v0id);
 	public static Tile grass = new GrassTile(Sprite.grass);
 	public static Tile flower = new GrassTile(Sprite.flower);
-	public static Tile stones = new RockTile(Sprite.stones);
 	public static Tile lightGrass = new GrassTile(Sprite.lightGrass);
+	public static Tile stones = new RockTile(Sprite.stones);
+	public static Tile darkhedge = new HedgeTile(Sprite.hedgedark);
+	public static Tile lighthedge = new HedgeTile(Sprite.hedgelight);
+	//NATURAL FLOOR
+	public static Tile sand = new SandTile(Sprite.sand);	
+	public static Tile blackrock = new RockTile(Sprite.blackrock);
+	//CASTLE
+	public static Tile castlewall = new WallTile(Sprite.castleblack);
+	//MANMADE FLOOR
+	public static Tile orangepaved = new PavedFloorTile(Sprite.orangebrickpaved);
+	public static Tile victorianpaved = new PavedFloorTile(Sprite.victorianpaved);
+	
 	
 	//SET Tile object to a new set of "Tile" Rules
 	

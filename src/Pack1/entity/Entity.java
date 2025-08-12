@@ -9,18 +9,14 @@ public class Entity {
 	
 	public int x,y;
 	private boolean removed = false;
-	protected Level level;
+	protected Level level;//set by init() at bottom.
 	protected final Random random = new Random();
 	
 	public void update()//-LINK to update() in Game
-	{
-		
-	}
+	{}
 	
 	public void render(Screen screen)//@OverR in Player
-	{
-		
-	}
+	{}
 	
 	public void remove()
 	{
@@ -30,5 +26,10 @@ public class Entity {
 	
 	public boolean getRemoved()
 	{return removed;}
+	
+	public void init(Level level)
+	{
+		this.level = level;
+	}
 
 }

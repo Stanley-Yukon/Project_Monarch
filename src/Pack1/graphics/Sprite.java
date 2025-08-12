@@ -37,12 +37,27 @@ public class Sprite {
 			pixels[i] = color;
 		}		
 	}
-	
-	public static Sprite v0id = new Sprite(16,0,0,SpriteSheet.tiles1);//New Static Instance with unique variables
+	//NATURE
+	public static Sprite v0id = new Sprite(16,5,1,SpriteSheet.fancy1);//New Static Instance with unique variables
 	public static Sprite grass = new Sprite(16,1,0,SpriteSheet.tiles1);
 	public static Sprite flower = new Sprite(16,2,0,SpriteSheet.tiles1);
 	public static Sprite stones = new Sprite(16,3,0,SpriteSheet.tiles1);
 	public static Sprite lightGrass = new Sprite(16,4,0,SpriteSheet.tiles1);
+	//ROCK FLOOR
+	public static Sprite blackrock = new Sprite(16,1,3,SpriteSheet.fancy1);
+	public static Sprite greyrock = new Sprite(16,1,0,SpriteSheet.fancy1);
+	//HEDGE
+	public static Sprite hedgedark = new Sprite(16,3,0,SpriteSheet.fancy1);
+	public static Sprite hedgelight = new Sprite(16,0,1,SpriteSheet.fancy1);
+	//SAND
+	public static Sprite sand = new Sprite(16,0,2,SpriteSheet.fancy1);
+	//CASTLE WALLS;
+	public static Sprite castleblack = new Sprite(16,2,2,SpriteSheet.fancy1);
+	
+	//MANMADE FLOORS
+	public static Sprite orangebrickpaved = new Sprite(16,2,1,SpriteSheet.fancy1);
+	public static Sprite victorianpaved = new Sprite(16,1,2,SpriteSheet.fancy1);
+	public static Sprite woodfloor = new Sprite(16,2,4,SpriteSheet.fancy1);
 	
 	/*small sprites ( not used )
 	public static Sprite player0 = new Sprite(16,0,10,SpriteSheet.tiles1);
