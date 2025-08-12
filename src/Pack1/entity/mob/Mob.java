@@ -54,7 +54,7 @@ public abstract class Mob extends Entity{
 	}
 	
 	public void update()
-	{}
+	{ }
 	
 	
 	/* OLD VERISON ( FAIL AT SLIDING AND SINGLE-BLOCK-SIDE-COLLIDE )

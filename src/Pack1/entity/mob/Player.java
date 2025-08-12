@@ -1,6 +1,7 @@
 package Pack1.entity.mob;
 
 import Pack1.Game;
+import Pack1.entity.projectile.Projectile;
 import Pack1.graphics.Screen;
 import Pack1.graphics.Sprite;
 import Pack1.input.Keyboard;
@@ -63,6 +64,7 @@ public class Player extends Mob {
 		else {walking=false;}//ALL ANIMATION is done in RENDER
 		
 		updateShoting();
+		clear();
 	}
 	
 
@@ -83,6 +85,17 @@ public class Player extends Mob {
 			//2.
 			double dir = Math.atan2(dy, dx);//In Radians
 			shoot(x,y,dir);
+		}
+	}
+	
+	private void clear()
+	{
+		for(int i=0; i< projectiles.size(); i++)
+		{
+			Projectile p = projectiles.get(i);
+			//				^ Found in Mob ( Class )
+			if(p.isRemoved()){projectiles.remove(i);}
+			
 		}
 	}
 

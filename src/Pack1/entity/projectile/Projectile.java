@@ -5,6 +5,8 @@ import Pack1.graphics.Sprite;
 
 public class Projectile extends Entity{
 	
+	protected double x,y;
+	
 	protected final int spawnX;
 	protected final int spawnY;
 	
@@ -13,6 +15,7 @@ public class Projectile extends Entity{
 	
 	protected double nx,ny;// Change each tick n =
 	protected double speed, rateOfFire, damage, range;
+	protected double distance_travelled;
 	
 	public Projectile(int x, int y, double dir)
 	{
@@ -31,6 +34,11 @@ public class Projectile extends Entity{
 	protected void move()
 	{
 		
+	}
+	
+	public boolean isRemoved()
+	{
+		return removed;
 	}
 
 }
